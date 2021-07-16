@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mysql:
+    image: 'mysql/mysql-server:5.7'
+    restart: always
+    container_name: mysql
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./config/my.cnf:/etc/my.cnf
+      - ./init:/docker-entrypoint-initdb.d/
+    ports:
+      - '3306:3306'
+      
+networks:
+  default:
+    external:
+      name: lzs_network
